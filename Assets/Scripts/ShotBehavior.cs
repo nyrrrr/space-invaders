@@ -4,7 +4,7 @@ using System.Collections;
 public class ShotBehavior : MonoBehaviour
 {
 
-    float fSpeed = 4f;
+    float fSpeed = 10f;
     Rigidbody2D rigidBody;
 
     // Use this for initialization

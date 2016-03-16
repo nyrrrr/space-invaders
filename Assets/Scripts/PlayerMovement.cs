@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         fShoot = Input.GetAxisRaw("Jump");
-        if (fShoot > 0)
+        if (fShoot > 0 && projectile == null)
         {
             projectile = (GameObject)Instantiate(projectilePrefab, gun.position, Quaternion.identity);
         }
