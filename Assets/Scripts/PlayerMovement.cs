@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour {
 
     Rigidbody2D rigidBody;
 
-    float fHorizontal, fSpeed = 0.2f;
+    float fHorizontal, fSpeed = 10f;
 
 	// Use this for initialization
 	void Awake () {
@@ -16,8 +16,8 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         fHorizontal = Input.GetAxisRaw("Horizontal");
-        go.Translate(fHorizontal * fSpeed, 0, go.position.z);
+        rigidBody.velocity = Vector2.right * fHorizontal * fSpeed;
 	}
 }
