@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
         {
             enemies.Remove(this);          
             Destroy(gameObject);
+            Destroy(other.gameObject);
             // TODO handle score and further enemy behaviour
         }
         else if (other.gameObject.tag != "Enemy")
