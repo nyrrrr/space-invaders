@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
     Transform go;
     Rigidbody2D rigidBody;
 
-    Enemy[] enemies;
+    static List<Enemy> enemies;
 
     float fSpeed = 5f;
     bool isMovingLeft = true;
@@ -16,7 +17,7 @@ public class Enemy : MonoBehaviour
     {
         go = this.transform;
         rigidBody = GetComponent<Rigidbody2D>();
-        enemies = FindObjectsOfType(typeof(Enemy)) as Enemy[];
+        enemies = new List<Enemy>(FindObjectsOfType(typeof(Enemy)) as Enemy[]);
     }
 
     // Update is called once per frame
@@ -27,17 +28,19 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        // only for debug now
-        if (other.gameObject.tag != "Enemy")
+        if (other.gameObject.tag == "PlayerShot")
         {
-            var tmp = 0f;
+            enemies.Remove(this);          
+            Destroy(gameObject);
+            // TODO handle score and further enemy behaviour
+        }
+        else if (other.gameObject.tag != "Enemy")
+        {
             foreach (Enemy enemy in enemies)
             {
-                tmp = (tmp == 0f ? tmp = enemy.transform.position.x : tmp - enemy.transform.position.x);
                 if (enemy.isMovingLeft) enemy.isMovingLeft = false;
                 else enemy.isMovingLeft = true;
             }
-            Debug.Log(tmp);
         }
     }
 }
