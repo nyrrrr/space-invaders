@@ -14,11 +14,6 @@ public class ShotBehavior : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void FixedUpdate()
     {
         rigidBody.velocity = Vector2.up * fSpeed;
