@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ShotBehavior : MonoBehaviour
 {
 
-    float fSpeed = 10f;
+    float fSpeed = 8f;
     Rigidbody2D rigidBody;
 
     // Use this for initialization
