@@ -1854,6 +1854,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 485060, guid: bcee12c9ceb9fc044ae06617becb0c4e, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bcee12c9ceb9fc044ae06617becb0c4e, type: 2}
   m_IsPrefabParent: 0
@@ -2410,7 +2414,7 @@ GameObject:
   - 61: {fileID: 1910699085}
   m_Layer: 0
   m_Name: Border_left
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2874,7 +2878,7 @@ GameObject:
   - 61: {fileID: 2097133685}
   m_Layer: 0
   m_Name: Border_right
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

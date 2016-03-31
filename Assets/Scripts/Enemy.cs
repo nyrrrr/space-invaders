@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System;
 using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
+    public Transform gun;
     Rigidbody2D rigidBody;
+
+    public GameObject projectilePrefab;
+    GameObject projectile = null;
 
     //class vars
     static List<Enemy> enemies;
@@ -13,7 +16,10 @@ public class Enemy : MonoBehaviour
     static float fSpeed = 2f, fDownSpeed = 2f;
     static bool isMovingDown = false;
 
+    int iAttackIndicator = 360;
+
     bool isMovingLeft = true;
+    bool isAttacking = false;
     bool tmpSave; // monkey fix var
 
     // Use this for initialization
@@ -21,6 +27,7 @@ public class Enemy : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         enemies = new List<Enemy>(FindObjectsOfType(typeof(Enemy)) as Enemy[]);
+        projectilePrefab.GetComponent<ShotBehavior>().SetIsShotByPlayer(false);
     }
 
     // Update is called once per frame
@@ -32,11 +39,18 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         tmpSave = isMovingLeft;
+
+        isAttacking = (Random.Range(1, iAttackIndicator + 1) == iAttackIndicator ? true : false);
+        if (isAttacking && projectile == null)
+        {
+            projectile = (GameObject)Instantiate(projectilePrefab, gun.position, Quaternion.identity);
+            projectile.GetComponent<ShotBehavior>().SetIsShotByPlayer(false);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "PlayerShot")
+        if (other.gameObject.tag == "PlayerShot" && other.gameObject.GetComponent<ShotBehavior>().GetIsShotByPlayer())
         {
             fSpeed += 0.1f;
             enemies.Remove(this);
@@ -44,7 +58,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             // TODO handle score and further enemy behaviour
         }
-        else if (other.gameObject.tag != "Enemy")
+        else if (other.gameObject.tag == "Border")
         {
             isMovingDown = true;
             StartCoroutine(MoveDownTrigger());

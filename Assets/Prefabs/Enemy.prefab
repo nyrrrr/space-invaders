@@ -43,7 +43,7 @@ Transform:
   m_GameObject: {fileID: 171988}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: -0.00000016292068}
   m_LocalPosition: {x: -3, y: 4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_Children:
   - {fileID: 490944}
   m_Father: {fileID: 0}
@@ -102,6 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e733bf3426871384fac81432efe72c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun: {fileID: 490944}
+  projectilePrefab: {fileID: 121818, guid: 359900372e02f944181a2cedf76a9177, type: 2}
 --- !u!212 &21232994
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -182,6 +184,18 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 490944}
+    - target: {fileID: 0}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 121818, guid: 359900372e02f944181a2cedf76a9177, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 171988}
